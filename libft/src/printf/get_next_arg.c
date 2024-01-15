@@ -6,7 +6,7 @@
 /*   By: mmosk <mmosk@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/11/07 12:55:48 by mmosk         #+#    #+#                 */
-/*   Updated: 2023/11/09 21:42:08 by mmosk         ########   odam.nl         */
+/*   Updated: 2024/01/15 15:34:10 by mmosk         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ char	*select_converter(char type, int *size, t_flags flags, va_list args)
 		return (c_int(size, flags, args));
 	else if (type == 'u')
 		return (c_uint(size, flags, args));
+	else if (type == 'f')
+		return (c_dbl(size, flags, args));
 	else if (type == 'x')
 		return (c_hexl(size, flags, args));
 	else if (type == 'X')

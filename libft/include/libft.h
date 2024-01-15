@@ -6,7 +6,7 @@
 /*   By: mmosk <mmosk@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/10/02 15:55:18 by mmosk         #+#    #+#                 */
-/*   Updated: 2023/10/30 13:08:32 by mmosk         ########   odam.nl         */
+/*   Updated: 2024/01/15 15:40:50 by mmosk         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,10 @@ typedef struct s_list
 	void			*content;
 	struct s_list	*next;
 }	t_list;
+
+
+double	ft_dabs(double in);
+long	ft_labs(long in);
 
 int		ft_toupper(int c);
 int		ft_tolower(int c);
@@ -64,6 +68,8 @@ char	*ft_itoa(int n);
 int		ft_long_digits(long in, long base_size);
 int		ft_sz_digits(size_t in, size_t base_size);
 char	*ft_sztoa_base(size_t n, char *base, char *out, int digits);
+
+char	*ft_dtoa(double in, char *out, int length);
 
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 void	ft_striteri(char *s, void (*f)(unsigned int, char *));

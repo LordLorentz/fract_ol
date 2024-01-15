@@ -7,9 +7,11 @@ ARCHIVE = ar -rcs
 INCLUDE_DIRS = -I ./include
 
 FILES := \
+	libc/ft_abs.c \
 	libc/ft_atoi.c \
 	libc/ft_bzero.c \
 	libc/ft_calloc.c \
+	libc/ft_dtoa.c \
 	libc/ft_free_nptr_arr.c \
 	libc/ft_free_ptr_arr.c \
 	libc/ft_isalnum.c \
@@ -57,8 +59,10 @@ FILES := \
 	libc/ft_tolower.c \
 	libc/ft_toupper.c \
 	printf/converters_char.c \
-	printf/converters_num.c \
+	printf/converters_dec.c \
+	printf/converters_hex.c \
 	printf/count_args.c \
+	printf/decode.c \
 	printf/fill_num.c \
 	printf/find_flags.c \
 	printf/ft_arr_cat.c \

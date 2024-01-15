@@ -6,16 +6,18 @@
 /*   By: mmosk <mmosk@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/01/09 15:32:18 by mmosk         #+#    #+#                 */
-/*   Updated: 2024/01/12 16:51:39 by mmosk         ########   odam.nl         */
+/*   Updated: 2024/01/15 22:34:17 by mmosk         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fract_ol.h"
 
+// * (size_t) var
+
 static inline t_complex	iterate_z_nmath(t_complex z, t_complex *c, double symmetry)
 {
 	const double	radius = pow(z.real, 2) + pow(z.imgn, 2);
-	const double	angle = atan(z.real / z.imgn);
+	const double	angle = atan2(z.imgn, z.real);
 	const double	folded_radius = pow(radius, symmetry / 2.0);
 	const double	folded_angle = angle * symmetry;
 

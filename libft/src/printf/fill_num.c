@@ -6,7 +6,7 @@
 /*   By: mmosk <mmosk@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/10/27 12:09:38 by mmosk         #+#    #+#                 */
-/*   Updated: 2023/11/13 21:43:53 by mmosk         ########   odam.nl         */
+/*   Updated: 2024/01/15 21:36:38 by mmosk         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,10 @@ char	*fill_num(int *size, t_numb n, t_flags flg)
 	int		signsz;
 	char	*out;
 
-	digits = ft_sz_digits(n.num, n.base_sz);
+	if (n.base == &decode_dbl)
+		digits = 15;
+	else
+		digits = ft_sz_digits(*(size_t *)n.num, n.base_sz);
 	signsz = ft_strlen(n.sign);
 	flg = justify_flags(flg, digits, signsz);
 	out = malloc(flg.prefixsz + flg.width + 2);
@@ -69,7 +72,7 @@ char	*fill_null(int *size, const char *in, t_flags flags)
 	out = malloc(flags.prefixsz + flags.width + 2);
 	if (!out)
 		return (NULL);
-	justify_str(out + flags.prefixsz, (size_t)in, &out_str, flags);
+	justify_str(out + flags.prefixsz, (void *)in, &decode_str, flags);
 	*size = flags.prefixsz + flags.width;
 	return (out);
 }

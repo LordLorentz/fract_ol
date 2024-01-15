@@ -6,7 +6,7 @@
 /*   By: mmosk <mmosk@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/12/19 15:01:35 by mmosk         #+#    #+#                 */
-/*   Updated: 2024/01/12 16:57:57 by mmosk         ########   odam.nl         */
+/*   Updated: 2024/01/15 21:35:58 by mmosk         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,9 +93,10 @@ int check_other(mlx_t *mlx, t_fractal *fractal, t_cam *camera)
 	draw = 0;
 	if (mlx_is_key_down(mlx, MLX_KEY_SPACE))
 	{
-		ft_printf("Symmetry: %lf\n", fractal->symmetry);
-		ft_printf("Depth: %ld\n", fractal->depth);
-		ft_printf("Julia X: %lf, Julia Y: %lf\n", fractal->c.real, fractal->c.imgn);
+		ft_printf("Symmetry: %f\n", fractal->symmetry);
+		ft_printf("Depth: %d\n", (int)fractal->depth);
+		ft_printf("Julia X: %f, Julia Y: %f\n",
+			fractal->c.real, fractal->c.imgn);
 	}
 	if (mlx_is_key_down(mlx, MLX_KEY_Z))
 	{

@@ -6,7 +6,7 @@
 /*   By: mmosk <mmosk@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/10/23 14:40:26 by mmosk         #+#    #+#                 */
-/*   Updated: 2023/11/13 20:58:11 by mmosk         ########   odam.nl         */
+/*   Updated: 2024/01/15 13:12:39 by mmosk         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ char	*c_str(int *size, t_flags flags, va_list args)
 	out = malloc(flags.prefixsz + flags.width + 2);
 	if (!out)
 		return (NULL);
-	justify_str(out + flags.prefixsz, (size_t)in, &out_str, flags);
+	justify_str(out + flags.prefixsz, (void *)in, &decode_str, flags);
 	*size = flags.prefixsz + flags.width;
 	return (out);
 }

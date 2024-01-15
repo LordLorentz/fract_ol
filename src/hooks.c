@@ -6,7 +6,7 @@
 /*   By: mmosk <mmosk@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/01/12 13:40:13 by mmosk         #+#    #+#                 */
-/*   Updated: 2024/01/12 16:59:59 by mmosk         ########   odam.nl         */
+/*   Updated: 2024/01/15 13:42:00 by mmosk         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ void	ft_loop_hook(void *param)
 	t_fractal		fractal;
 	int				draw;
 
-	output_lock(*(t_screenstate *) param);
 	mlx = ((t_screenstate *)param)->mlx;
 	img = ((t_screenstate *)param)->img;
 	cam = ((t_screenstate *)param)->camera;
@@ -79,4 +78,10 @@ void	ft_loop_hook(void *param)
 	((t_screenstate *)param)->img = img;
 	((t_screenstate *)param)->camera = cam;
 	((t_screenstate *)param)->fractal = fractal;
+}
+
+void	ft_key_hook(mlx_key_data_t keydata, void *param)
+{
+	if (keydata.key == MLX_KEY_ENTER)
+		output_lock(*(t_screenstate *) param);
 }

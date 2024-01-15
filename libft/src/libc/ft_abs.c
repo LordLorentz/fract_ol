@@ -1,29 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_printf.c                                        :+:    :+:            */
+/*   ft_abs.c                                           :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: mmosk <mmosk@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2023/10/20 17:39:01 by mmosk         #+#    #+#                 */
-/*   Updated: 2024/01/15 22:15:58 by mmosk         ########   odam.nl         */
+/*   Created: 2024/01/15 14:49:08 by mmosk         #+#    #+#                 */
+/*   Updated: 2024/01/15 14:51:52 by mmosk         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	ft_printf(const char *format, ...)
+double	ft_dabs(double in)
 {
-	char	*out;
-	int		out_size;
-	va_list	args;
+	if (in < 0)
+		return (-in);
+	return (in);
+}
 
-	va_start(args, format);
-	out_size = ft_vsprintf(format, &out, args);
-	va_end(args);
-	if (out_size == -1)
-		return (0);
-	if (write(1, out, out_size) < 0)
-		return (free(out), -1);
-	return (free(out), out_size);
+long	ft_labs(long in)
+{
+	if (in < 0)
+		return (-in);
+	return (in);
 }

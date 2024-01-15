@@ -6,7 +6,7 @@
 /*   By: mmosk <mmosk@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/11/29 13:25:10 by mmosk         #+#    #+#                 */
-/*   Updated: 2024/01/12 17:12:40 by mmosk         ########   odam.nl         */
+/*   Updated: 2024/01/15 22:47:10 by mmosk         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,13 +118,18 @@ uint32_t			gc_b_x(t_complex z, t_occ *occlusion, t_fractal fractal);
 ////////////					Occlusion modes						////////////
 
 unsigned int		occ_cutoff(t_complex z, unsigned long i, long depth);
+
 unsigned int		occ_sub(t_complex z, unsigned long i, long depth);
+inline unsigned int	blend_sub(t_complex z, t_complex prev, int end);
+
 unsigned int		occ_angle(t_complex z, unsigned long i, long depth);
+inline unsigned int	blend_angle(t_complex z, t_complex prev, int end);
 
 ////////////					Hooks								////////////
 
 void				ft_scroll_hook(double dx, double dy, void *param);
 void				ft_resize_hook(int32_t width, int32_t height, void* param);
+void				ft_key_hook(mlx_key_data_t keydata, void *param);
 void				ft_loop_hook(void *param);
 
 ////////////					Error handling						////////////

@@ -1,6 +1,7 @@
 {
 	"files.associations": {
 		"fract_ol.h": "c",
-		"random": "c"
+		"random": "c",
+		"stdarg.h": "c"
 	}
 }

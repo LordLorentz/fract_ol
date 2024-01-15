@@ -13,6 +13,7 @@ LIBS	+= $(LIBFT)/build/libft.a
 INCLUDE_DIRS = -I $(LIBFT)/include -I $(LIBMLX)/include
 
 FILES := \
+	blend.c \
 	draw_image.c \
 	error_handling.c \
 	main.c \
@@ -44,6 +45,9 @@ $(LIBFT):
 $(NAME): build $(OBJECTS)
 	$(CC) $(CFLAGS) $(OBJECTS) $(LIBS) -o $(NAME)
 
+fsanitize: build $(OBJECTS)
+	$(CC) -fsanitize=address -g $(CFLAGS) $(OBJECTS) $(LIBS) -o $(NAME)
+
 build:
 	mkdir build
 
@@ -64,4 +68,4 @@ re: fclean all
 
 re: fclean all
 
-.PHONY: all bonus clean fclean re libmlx libft
+.PHONY: all bonus clean fclean re libmlx libft fsanitize
