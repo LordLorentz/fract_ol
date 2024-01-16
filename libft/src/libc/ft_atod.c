@@ -6,69 +6,46 @@
 /*   By: mmosk <mmosk@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/10/03 18:57:46 by mmosk         #+#    #+#                 */
-/*   Updated: 2024/01/15 21:55:10 by mmosk         ########   odam.nl         */
+/*   Updated: 2024/01/16 21:56:33 by mmosk         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <math.h>
 
-char	*ft_atod(char *in, double out)
+static int	isspace(char c)
 {
-	int			digits;
-	int			past_point;
-
-	digits = ft_sz_digits((size_t)in, 10);
-	if (digits == 0)
-		digits = 1;
-	in = ft_dabs(in);
-	past_point = 1;
-	out[length--] = '\0';
-	while (length-- > 0)
-	{
-		if (length - digits == 0)
-		{
-			out[length + past_point] = '.';
-			past_point = 0;
-		}
-		out[length + past_point] =
-			'0' + (size_t)(in * pow(10, length - digits)) % 10;
-	}
-	return (out);
+	if (c == '\f' || c == '\n' || c == '\r'
+		|| c == '\t' || c == '\v' || c == ' ')
+		return (1);
+	return (0);
 }
 
-// check whitespace
-// negative flag
-// double result = 0.0;
-// result = (result * 10) + getal
-// na de punt
-// double div = 10
-// result = result + ((getal) / div)
-// div = div * 10
-
-// int tientallen
-// int sub_getallen / 100
-
-
-int	ft_atoi(const char *nptr)
+double	ft_atod(char *in)
 {
-	int		i;
+	int		past_point;
 	int		sign;
-	long	num;
+	double	num;
 
-	i = 0;
-	while (isspace(nptr[i]))
-		i++;
+	while (isspace(*in))
+		in++;
 	sign = 1;
-	if (nptr[i] == '-')
-		sign = -1;
-	if (nptr[i] == '-' || nptr[i] == '+')
-		i++;
+	while (*in++ == '-')
+		sign *= -1;
+	past_point = 0;
 	num = 0;
-	while (nptr[i] >= '0' && nptr[i] <= '9')
+	while (*in >= '0' && *in <= '9')
 	{
-		num *= 10;
-		num += nptr[i] - '0';
-		i++;
+		if (past_point == 0)
+			num *= 10;
+		num += (double)(*in - '0') * pow(10, -past_point);
+		in++;
+		if (*in == '.' || past_point != 0)
+		{
+			if (past_point == 0)
+				in++;
+			past_point++;
+		}
 	}
 	return ((int)(num * sign));
 }

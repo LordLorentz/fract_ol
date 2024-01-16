@@ -6,7 +6,7 @@
 /*   By: mmosk <mmosk@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/01/12 13:40:13 by mmosk         #+#    #+#                 */
-/*   Updated: 2024/01/15 13:42:00 by mmosk         ########   odam.nl         */
+/*   Updated: 2024/01/16 22:50:48 by mmosk         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,5 +83,5 @@ void	ft_loop_hook(void *param)
 void	ft_key_hook(mlx_key_data_t keydata, void *param)
 {
 	if (keydata.key == MLX_KEY_ENTER)
-		output_lock(*(t_screenstate *) param);
+		output_lock((t_screenstate *) param);
 }

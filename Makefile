@@ -13,17 +13,18 @@ LIBS	+= $(LIBFT)/build/libft.a
 INCLUDE_DIRS = -I $(LIBFT)/include -I $(LIBMLX)/include
 
 FILES := \
-	blend.c \
+	_output_state.c \
 	draw_image.c \
 	error_handling.c \
 	main.c \
-	occlusion.c \
-	output_state.c \
+	occ_iter.c \
+	occ_prev.c \
 	hooks.c \
 	shift.c \
 	z_2.c \
 	z_3.c \
 	z_n.c \
+	z_t.c \
 	z_x.c \
 	zoom.c
 

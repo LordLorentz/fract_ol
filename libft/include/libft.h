@@ -6,7 +6,7 @@
 /*   By: mmosk <mmosk@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/10/02 15:55:18 by mmosk         #+#    #+#                 */
-/*   Updated: 2024/01/15 15:40:50 by mmosk         ########   odam.nl         */
+/*   Updated: 2024/01/16 21:49:16 by mmosk         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ int		ft_sz_digits(size_t in, size_t base_size);
 char	*ft_sztoa_base(size_t n, char *base, char *out, int digits);
 
 char	*ft_dtoa(double in, char *out, int length);
+double	ft_atod(char *in);
 
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 void	ft_striteri(char *s, void (*f)(unsigned int, char *));

@@ -6,7 +6,7 @@
 /*   By: mmosk <mmosk@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/11/29 13:26:06 by mmosk         #+#    #+#                 */
-/*   Updated: 2024/01/15 22:49:40 by mmosk         ########   odam.nl         */
+/*   Updated: 2024/01/16 21:57:51 by mmosk         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int32_t	main(void)
 	img = mlx_new_image(mlx, WIDTH, HEIGHT);
 	if (!img || (mlx_image_to_window(mlx, img, 0, 0) < 0))
 		ft_exit(1, __func__, __LINE__);
-	fractal.get_color = &gc_j_t;
+	fractal.get_color = &gc_b_n;
 	fractal.symmetry = 2.0;
 	fractal.c.real = 0.274;
 	fractal.c.imgn = -0.008;

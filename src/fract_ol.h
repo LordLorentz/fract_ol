@@ -6,7 +6,7 @@
 /*   By: mmosk <mmosk@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/11/29 13:25:10 by mmosk         #+#    #+#                 */
-/*   Updated: 2024/01/15 22:47:10 by mmosk         ########   odam.nl         */
+/*   Updated: 2024/01/16 22:48:08 by mmosk         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,8 +82,8 @@ typedef struct s_screenstate {
 
 ////////////					I/O									////////////
 
-void				output_state(t_screenstate state);
-void				output_lock(t_screenstate state);
+void				output_state(t_screenstate *state);
+void				output_lock(t_screenstate *state);
 
 ////////////					Controls							////////////
 
@@ -118,12 +118,11 @@ uint32_t			gc_b_x(t_complex z, t_occ *occlusion, t_fractal fractal);
 ////////////					Occlusion modes						////////////
 
 unsigned int		occ_cutoff(t_complex z, unsigned long i, long depth);
-
 unsigned int		occ_sub(t_complex z, unsigned long i, long depth);
-inline unsigned int	blend_sub(t_complex z, t_complex prev, int end);
-
 unsigned int		occ_angle(t_complex z, unsigned long i, long depth);
-inline unsigned int	blend_angle(t_complex z, t_complex prev, int end);
+unsigned int		occ_depth(t_complex z, unsigned long i, long depth);
+unsigned int		occ_curse(t_complex z, unsigned long i, long depth);
+
 
 ////////////					Hooks								////////////
 
