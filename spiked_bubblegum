@@ -1,0 +1,11 @@
+fractal=julia_t
+c.real=-0.9500000008024
+c.imgn=01.332000000623
+symmetry=-3.9999999997931
+depth=100
+occlusion=substraction
+zoom=01.833233264861
+x_offset=-130
+y_offset=-129
+width=256
+height=256
