@@ -6,7 +6,7 @@
 /*   By: mmosk <mmosk@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/10/02 15:55:18 by mmosk         #+#    #+#                 */
-/*   Updated: 2024/01/16 21:49:16 by mmosk         ########   odam.nl         */
+/*   Updated: 2024/01/17 14:48:48 by mmosk         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ int		ft_isalpha(int c);
 int		ft_isascii(int c);
 int		ft_isdigit(int c);
 int		ft_isprint(int c);
+int		ft_isspace(int c);
 
 void	ft_bzero(void *s, size_t n);
 void	*ft_calloc(size_t nmemb, size_t size);
@@ -56,6 +57,7 @@ int		ft_memcmp(const void *s1, const void *s2, size_t n);
 
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	*ft_strtrim(char const *s1, char const *set);
+char	*ft_strcull(char *str, int (*f)(int));
 char	**ft_split(char const *s, char c);
 
 void	*ft_memchr(const void *s, int c, size_t n);

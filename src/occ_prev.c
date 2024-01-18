@@ -6,7 +6,7 @@
 /*   By: mmosk <mmosk@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/01/15 15:50:31 by mmosk         #+#    #+#                 */
-/*   Updated: 2024/01/16 21:55:56 by mmosk         ########   odam.nl         */
+/*   Updated: 2024/01/17 13:30:20 by mmosk         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,5 +71,17 @@ unsigned int	occ_angle(t_complex z, unsigned long i, long depth)
 	if (z.real * z.real + z.imgn * z.imgn > 4)
 		return (blend_angle(z, prev, 0));
 	prev = z;
+	return (0);
+}
+
+unsigned int		occ_curse(t_complex z, unsigned long i, long depth)
+{
+	t_fractal	host;
+
+	host.depth = depth / 4;
+	if (i > (unsigned long) depth)
+		return (0x000000FF);
+	if (gc_b_2(z, &occ_cutoff, host) == 0xFFFFFFFF)
+		return (0xFFFFFFFF);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: mmosk <mmosk@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/12/19 15:01:35 by mmosk         #+#    #+#                 */
-/*   Updated: 2024/01/15 21:35:58 by mmosk         ########   odam.nl         */
+/*   Updated: 2024/01/18 13:34:07 by mmosk         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,24 +86,31 @@ int	check_qert(mlx_t *mlx, t_fractal *fractal)
 	return (1);
 }
 
-int check_other(mlx_t *mlx, t_fractal *fractal, t_cam *camera)
+int check_other(t_screenstate *state, t_cam *camera)
 {
 	int draw;
 
 	draw = 0;
-	if (mlx_is_key_down(mlx, MLX_KEY_SPACE))
+	if (mlx_is_key_down(state->mlx, MLX_KEY_SPACE))
 	{
-		ft_printf("Symmetry: %f\n", fractal->symmetry);
-		ft_printf("Depth: %d\n", (int)fractal->depth);
+		ft_printf("Symmetry: %f\n", state->fractal.symmetry);
+		ft_printf("Depth: %d\n", (int)state->fractal.depth);
+		ft_printf("Zoom: %f\n", state->camera.zoom);
 		ft_printf("Julia X: %f, Julia Y: %f\n",
-			fractal->c.real, fractal->c.imgn);
+			state->fractal.c.real, state->fractal.c.imgn);
 	}
-	if (mlx_is_key_down(mlx, MLX_KEY_Z))
+	if (mlx_is_key_down(state->mlx, MLX_KEY_Z))
 	{
 		camera->zoom = 1;
-		camera->x_offset = - mlx->width / 2;
-		camera->y_offset = - mlx->height / 2;
+		camera->x_offset = - state->mlx->width / 2;
+		camera->y_offset = - state->mlx->height / 2;
 		draw++;
+	}
+	if (mlx_is_key_down(state->mlx, MLX_KEY_ESCAPE))
+	{
+		ft_printf("Shutting down...\n");
+		output_state(state, "latest");
+		exit(0);
 	}
 	return (draw);
 }

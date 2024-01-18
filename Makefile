@@ -7,13 +7,16 @@ ARCHIVE = ar -rcs
 LIBMLX	= ./MLX42
 LIBFT	= ./libft
 
-LIBS	= $(LIBMLX)/build/libmlx42.a -ldl -lglfw -pthread -lm
+LINKERS	= -ldl -lglfw -pthread -lm
+
+LIBS	= $(LIBMLX)/build/libmlx42.a
 LIBS	+= $(LIBFT)/build/libft.a
 
 INCLUDE_DIRS = -I $(LIBFT)/include -I $(LIBMLX)/include
 
 FILES := \
 	_output_state.c \
+	_read_input.c \
 	draw_image.c \
 	error_handling.c \
 	main.c \
@@ -43,11 +46,11 @@ libmlx:
 $(LIBFT):
 	make -C $(LIBFT) all
 
-$(NAME): build $(OBJECTS)
-	$(CC) $(CFLAGS) $(OBJECTS) $(LIBS) -o $(NAME)
+$(NAME): build $(OBJECTS) $(LIBS)
+	$(CC) $(CFLAGS) $(OBJECTS) $(LINKERS) $(LIBS) -o $(NAME)
 
 fsanitize: build $(OBJECTS)
-	$(CC) -fsanitize=address -g $(CFLAGS) $(OBJECTS) $(LIBS) -o $(NAME)
+	$(CC) -fsanitize=address -g $(CFLAGS) $(OBJECTS) $(LINKERS) $(LIBS) -o $(NAME)
 
 build:
 	mkdir build

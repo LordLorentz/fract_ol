@@ -6,7 +6,7 @@
 /*   By: mmosk <mmosk@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/11/29 13:25:10 by mmosk         #+#    #+#                 */
-/*   Updated: 2024/01/16 22:48:08 by mmosk         ########   odam.nl         */
+/*   Updated: 2024/01/18 13:34:19 by mmosk         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,8 @@ typedef struct s_cam {
 	double	zoom;
 	int		x_offset;
 	int		y_offset;
+	int		width;
+	int		height;
 }	t_cam;
 
 typedef mlx_image_t	t_img;
@@ -73,6 +75,9 @@ typedef struct s_fractal {
 	long		depth;
 }	t_fractal;
 
+typedef				uint32_t (t_gc)(t_complex, t_occ *, t_fractal);
+
+
 typedef struct s_screenstate {
 	mlx_t		*mlx;
 	mlx_image_t	*img;
@@ -82,14 +87,14 @@ typedef struct s_screenstate {
 
 ////////////					I/O									////////////
 
-void				output_state(t_screenstate *state);
-void				output_lock(t_screenstate *state);
+t_screenstate		read_args(char **in);
+void				output_state(t_screenstate *state, char *filename);
 
 ////////////					Controls							////////////
 
 void				zoom_to_cursor(mlx_t *mlx, t_cam *cam, double direction);
 
-int 				check_other(mlx_t *mlx, t_fractal *fractal, t_cam *camera);
+int 				check_other(t_screenstate *state, t_cam *camera);
 int					check_qert(mlx_t *mlx, t_fractal *fractal);
 int					check_wasd(mlx_t *mlx, t_fractal *fractal);
 int					check_arrow_keys(mlx_t *mlx, t_cam *cam);
@@ -121,14 +126,16 @@ unsigned int		occ_cutoff(t_complex z, unsigned long i, long depth);
 unsigned int		occ_sub(t_complex z, unsigned long i, long depth);
 unsigned int		occ_angle(t_complex z, unsigned long i, long depth);
 unsigned int		occ_depth(t_complex z, unsigned long i, long depth);
+unsigned int		occ_plane(t_complex z, unsigned long i, long depth);
+unsigned int		occ_beam(t_complex z, unsigned long i, long depth);
 unsigned int		occ_curse(t_complex z, unsigned long i, long depth);
-
 
 ////////////					Hooks								////////////
 
 void				ft_scroll_hook(double dx, double dy, void *param);
 void				ft_resize_hook(int32_t width, int32_t height, void* param);
 void				ft_key_hook(mlx_key_data_t keydata, void *param);
+void				ft_close_hook(void *param);
 void				ft_loop_hook(void *param);
 
 ////////////					Error handling						////////////

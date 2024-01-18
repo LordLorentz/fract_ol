@@ -1,0 +1,11 @@
+fractal=mbrot_2
+c.real=00.000000000000
+c.imgn=00.000000000000
+symmetry=02.000000000640
+depth=20
+occlusion=depth
+zoom=00.014963174617
+x_offset=-2624
+y_offset=-8172
+width=2670
+height=1662

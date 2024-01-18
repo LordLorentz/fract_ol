@@ -6,7 +6,7 @@
 /*   By: mmosk <mmosk@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/12/19 14:09:20 by mmosk         #+#    #+#                 */
-/*   Updated: 2024/01/16 21:53:10 by mmosk         ########   odam.nl         */
+/*   Updated: 2024/01/17 13:30:59 by mmosk         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,15 +44,24 @@ unsigned int		occ_depth(t_complex z, unsigned long i, long depth)
 	return (0);
 }
 
- 
-unsigned int		occ_curse(t_complex z, unsigned long i, long depth)
+unsigned int		occ_plane(t_complex z, unsigned long i, long depth)
 {
-	t_fractal	host;
+	const double	magnitude = z.real * z.real + z.imgn * z.imgn;
 
-	host.depth = depth / 4;
 	if (i > (unsigned long) depth)
-		return (0x000000FF);
-	if (gc_b_2(z, &occ_cutoff, host) == 0xFFFFFFFF)
-		return (0xFFFFFFFF);
+		return (blend_depth((long)i, magnitude, 1));
+	if (z.imgn > 2 || z.imgn < -2)
+		return (blend_depth((long)i, magnitude, 0));
+	return (0);
+}
+
+unsigned int		occ_beam(t_complex z, unsigned long i, long depth)
+{
+	const double	magnitude = z.real * z.real + z.imgn * z.imgn;
+
+	if (i > (unsigned long) depth)
+		return (blend_depth((long)i, magnitude, 1));
+	if (z.real > 2 || z.real < -2)
+		return (blend_depth((long)i, magnitude, 0));
 	return (0);
 }

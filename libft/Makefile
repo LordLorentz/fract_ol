@@ -20,6 +20,7 @@ FILES := \
 	libc/ft_isascii.c \
 	libc/ft_isdigit.c \
 	libc/ft_isprint.c \
+	libc/ft_isspace.c \
 	libc/ft_itoa.c \
 	libc/ft_long_digits.c \
 	libc/ft_lstadd_back.c \

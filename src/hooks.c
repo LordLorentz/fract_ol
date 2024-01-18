@@ -6,7 +6,7 @@
 /*   By: mmosk <mmosk@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/01/12 13:40:13 by mmosk         #+#    #+#                 */
-/*   Updated: 2024/01/16 22:50:48 by mmosk         ########   odam.nl         */
+/*   Updated: 2024/01/18 13:34:32 by mmosk         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void	ft_loop_hook(void *param)
 	draw += check_arrow_keys(mlx, &cam);
 	draw += check_wasd(mlx, &fractal);
 	draw += check_qert(mlx, &fractal);
-	draw += check_other(mlx, &fractal, &cam);
+	draw += check_other((t_screenstate *)param, &cam);
 	if (draw)
 		draw_fract(img, cam, fractal);
 	((t_screenstate *)param)->mlx = mlx;
@@ -82,6 +82,20 @@ void	ft_loop_hook(void *param)
 
 void	ft_key_hook(mlx_key_data_t keydata, void *param)
 {
-	if (keydata.key == MLX_KEY_ENTER)
-		output_lock((t_screenstate *) param);
+	char	*filename;
+
+	if (keydata.key == MLX_KEY_ENTER && keydata.action == MLX_PRESS)
+	{
+		ft_printf("Enter filename to output state to: ");
+		filename = ft_strcull(get_next_line(1), &ft_isspace);
+		output_state((t_screenstate *) param, filename);
+		free(filename);
+	}
+}
+
+void	ft_close_hook(void *param)
+{
+	ft_printf("Shutting down...\n");
+	output_state((t_screenstate *) param, "latest");
+	exit(0);
 }

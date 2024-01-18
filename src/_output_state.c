@@ -12,40 +12,68 @@
 
 #include "fract_ol.h"
 
-void	output_state(t_screenstate *state)
+char	*get_fractal(t_gc *f)
 {
-	char			*filename = get_next_line(1);
-	const int		fd = open(filename, O_WRONLY | O_CREAT | O_TRUNC, 0777);
+	if (f == &gc_j_2)
+		return ("julia_2");
+	if (f == &gc_b_2)
+		return ("mbrot_2");
+	if (f == &gc_j_3)
+		return ("julia_3");
+	if (f == &gc_b_3)
+		return ("mbrot_3");
+	if (f == &gc_j_n)
+		return ("julia_n");
+	if (f == &gc_b_n)
+		return ("mbrot_n");
+	if (f == &gc_j_t)
+		return ("julia_t");
+	if (f == &gc_b_t)
+		return ("mbrot_t");
+	if (f == &gc_j_x)
+		return ("julia_x");
+	if (f == &gc_b_x)
+		return ("mbrot_x");
+	return ("Error!");
+}
+
+char	*get_occlusion(t_occ *f)
+{
+	if (f == &occ_cutoff)
+		return ("cutoff");
+	if (f == &occ_sub)
+		return ("substraction");
+	if (f == &occ_angle)
+		return ("angle");
+	if (f == &occ_depth)
+		return ("depth");
+	if (f == &occ_plane)
+		return ("plane");
+	if (f == &occ_beam)
+		return ("beam");
+	if (f == &occ_curse)
+		return ("recursive");
+	return ("Error!");
+}
+
+void	output_state(t_screenstate *state, char *filename)
+{
+	int				fd;
 	const t_fractal	fractal = state->fractal;
-	const t_cam		camera = state->camera;
-	char			*temp;
-	
+	const t_cam		cam = state->camera;
+
+	fd = open(filename, O_WRONLY | O_CREAT | O_TRUNC, 0777);
 	if (fd < 2)
 		ft_exit(fd, __func__, __LINE__);
-	temp = "GET_FRACTAL";
 	ft_fprintf(fd,
-		"fractal=%f\nc.real=%f\nc.imgn=%f\nsymmetry=%f\ndepth=%d\n",
-		temp, fractal.c.real, fractal.c.imgn,
+		"fractal=%s\nc.real=%f\nc.imgn=%f\nsymmetry=%f\ndepth=%d\n",
+		get_fractal(fractal.get_color), fractal.c.real, fractal.c.imgn,
 		fractal.symmetry, (int)fractal.depth);
-	temp = "GET_OCCLUSION";
 	ft_fprintf(fd,
 		"occlusion=%s\nzoom=%f\nx_offset=%d\ny_offset=%d\n",
-		temp, camera.zoom, camera.x_offset, camera.y_offset);
+		get_occlusion(cam.occlusion), cam.zoom, cam.x_offset, cam.y_offset);
 	ft_fprintf(fd,
 		"width=%d\nheight=%d\n",
 		state->mlx->width, state->mlx->height);
 	close(fd);
-}
-
-void	output_lock(t_screenstate *state)
-{
-	static int	lock = false;
-
-	if (lock == false)
-	{
-		lock = true;
-		write(1, "Enter filename to output state to: ", 35);
-		output_state(state);
-		lock = false;
-	}
 }
