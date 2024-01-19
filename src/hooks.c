@@ -6,13 +6,13 @@
 /*   By: mmosk <mmosk@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/01/12 13:40:13 by mmosk         #+#    #+#                 */
-/*   Updated: 2024/01/18 13:34:32 by mmosk         ########   odam.nl         */
+/*   Updated: 2024/01/19 15:50:40 by mmosk         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fract_ol.h"
 
-void	ft_resize_hook(int32_t width, int32_t height, void* param)
+void	ft_resize_hook(int32_t width, int32_t height, void *param)
 {
 	mlx_t			*mlx;
 	mlx_image_t		*img;

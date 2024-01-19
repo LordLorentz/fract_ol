@@ -6,11 +6,11 @@
 /*   By: mmosk <mmosk@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/12/19 15:01:35 by mmosk         #+#    #+#                 */
-/*   Updated: 2024/01/18 13:34:07 by mmosk         ########   odam.nl         */
+/*   Updated: 2024/01/19 15:44:25 by mmosk         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "fract_ol.h"
+#include "fract_ol.h"
 
 int	check_arrow_keys(mlx_t *mlx, t_cam *cam)
 {
@@ -86,9 +86,9 @@ int	check_qert(mlx_t *mlx, t_fractal *fractal)
 	return (1);
 }
 
-int check_other(t_screenstate *state, t_cam *camera)
+int	check_other(t_screenstate *state, t_cam *camera)
 {
-	int draw;
+	int	draw;
 
 	draw = 0;
 	if (mlx_is_key_down(state->mlx, MLX_KEY_SPACE))
@@ -102,8 +102,8 @@ int check_other(t_screenstate *state, t_cam *camera)
 	if (mlx_is_key_down(state->mlx, MLX_KEY_Z))
 	{
 		camera->zoom = 1;
-		camera->x_offset = - state->mlx->width / 2;
-		camera->y_offset = - state->mlx->height / 2;
+		camera->x_offset = -state->mlx->width / 2;
+		camera->y_offset = -state->mlx->height / 2;
 		draw++;
 	}
 	if (mlx_is_key_down(state->mlx, MLX_KEY_ESCAPE))

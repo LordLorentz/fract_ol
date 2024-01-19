@@ -6,13 +6,13 @@
 /*   By: mmosk <mmosk@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/12/19 14:09:20 by mmosk         #+#    #+#                 */
-/*   Updated: 2024/01/17 13:30:59 by mmosk         ########   odam.nl         */
+/*   Updated: 2024/01/19 15:51:45 by mmosk         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fract_ol.h"
- 
-unsigned int		occ_cutoff(t_complex z, unsigned long i, long depth)
+
+unsigned int	occ_cutoff(t_complex z, unsigned long i, long depth)
 {
 	if (i > (unsigned long) depth)
 		return (0x000000FF);
@@ -23,9 +23,9 @@ unsigned int		occ_cutoff(t_complex z, unsigned long i, long depth)
 
 inline unsigned int	blend_depth(long i, double magnitude, int end)
 {
-	const unsigned int	r = (unsigned int) (25.5 * i);
-	const unsigned int	g = (unsigned int) (255.0 - 25.5 * -i);
-	const unsigned int	b = (unsigned int) (255.0 * magnitude / 8.0);
+	const unsigned int	r = (unsigned int)(25.5 * i);
+	const unsigned int	g = (unsigned int)(255.0 - 25.5 * -i);
+	const unsigned int	b = (unsigned int)(255.0 * magnitude / 8.0);
 	const unsigned int	color = r << 24 | g << 16 | b << 8 | 0xFF;
 
 	if (end)
@@ -33,7 +33,7 @@ inline unsigned int	blend_depth(long i, double magnitude, int end)
 	return (color);
 }
 
-unsigned int		occ_depth(t_complex z, unsigned long i, long depth)
+unsigned int	occ_depth(t_complex z, unsigned long i, long depth)
 {
 	const double	magnitude = z.real * z.real + z.imgn * z.imgn;
 
@@ -44,7 +44,7 @@ unsigned int		occ_depth(t_complex z, unsigned long i, long depth)
 	return (0);
 }
 
-unsigned int		occ_plane(t_complex z, unsigned long i, long depth)
+unsigned int	occ_plane(t_complex z, unsigned long i, long depth)
 {
 	const double	magnitude = z.real * z.real + z.imgn * z.imgn;
 
@@ -55,7 +55,7 @@ unsigned int		occ_plane(t_complex z, unsigned long i, long depth)
 	return (0);
 }
 
-unsigned int		occ_beam(t_complex z, unsigned long i, long depth)
+unsigned int	occ_beam(t_complex z, unsigned long i, long depth)
 {
 	const double	magnitude = z.real * z.real + z.imgn * z.imgn;
 

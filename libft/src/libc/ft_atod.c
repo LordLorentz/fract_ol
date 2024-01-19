@@ -6,15 +6,13 @@
 /*   By: mmosk <mmosk@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/10/03 18:57:46 by mmosk         #+#    #+#                 */
-/*   Updated: 2024/01/18 13:31:02 by mmosk         ########   odam.nl         */
+/*   Updated: 2024/01/19 15:10:41 by mmosk         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <math.h>
 
-#include "ft_printf.h"
-//BROKEN
 double	ft_atod(char *in)
 {
 	int		past_point;
@@ -30,8 +28,7 @@ double	ft_atod(char *in)
 	{
 		if (past_point == 0)
 			num *= 10;
-		num += (double)(*in - '0') * pow(10, -past_point);
-		ft_printf("_-%s, %f\n", in, num);
+		num += (double)(*in - '0') *pow(10, -past_point);
 		in++;
 		if (*in == '.' || past_point != 0)
 		{

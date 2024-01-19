@@ -6,7 +6,7 @@
 /*   By: mmosk <mmosk@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/01/09 15:32:18 by mmosk         #+#    #+#                 */
-/*   Updated: 2024/01/15 22:34:17 by mmosk         ########   odam.nl         */
+/*   Updated: 2024/01/19 15:45:07 by mmosk         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 // * (size_t) var
 
-static inline t_complex	iterate_z_nmath(t_complex z, t_complex *c, double symmetry)
+static inline t_complex	iterate_z_nmath(t_complex z, t_complex *c, double sym)
 {
 	const double	radius = pow(z.real, 2) + pow(z.imgn, 2);
 	const double	angle = atan2(z.imgn, z.real);
-	const double	folded_radius = pow(radius, symmetry / 2.0);
-	const double	folded_angle = angle * symmetry;
+	const double	folded_radius = pow(radius, sym / 2.0);
+	const double	folded_angle = angle * sym;
 
 	z.real = folded_radius * sin(folded_angle) + c->real;
 	z.imgn = folded_radius * cos(folded_angle) + c->imgn;

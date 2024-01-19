@@ -6,7 +6,7 @@
 /*   By: mmosk <mmosk@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/01/12 13:42:32 by mmosk         #+#    #+#                 */
-/*   Updated: 2024/01/17 21:44:27 by mmosk         ########   odam.nl         */
+/*   Updated: 2024/01/19 14:49:01 by mmosk         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 char	*ft_strcull(char *str, int (*f)(int))
 {
-	int i;
-	int offset;
+	int	i;
+	int	offset;
 
 	offset = 0;
 	i = 0;

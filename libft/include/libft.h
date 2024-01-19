@@ -6,7 +6,7 @@
 /*   By: mmosk <mmosk@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/10/02 15:55:18 by mmosk         #+#    #+#                 */
-/*   Updated: 2024/01/17 14:48:48 by mmosk         ########   odam.nl         */
+/*   Updated: 2024/01/19 15:36:52 by mmosk         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ typedef struct s_list
 	void			*content;
 	struct s_list	*next;
 }	t_list;
-
 
 double	ft_dabs(double in);
 long	ft_labs(long in);

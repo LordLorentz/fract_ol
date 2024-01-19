@@ -40,8 +40,11 @@ all: libmlx $(LIBFT) $(NAME)
 
 bonus: all
 
-libmlx:
+libmlx: $(LIBMLX)
 	@cmake $(LIBMLX) -B $(LIBMLX)/build && make -C $(LIBMLX)/build -j4
+
+$(LIBMLX):
+	git clone https://github.com/codam-coding-college/MLX42.git $(LIBMLX)
 
 $(LIBFT):
 	make -C $(LIBFT) all
@@ -65,6 +68,7 @@ clean:
 
 fclean: clean
 	make -C $(LIBFT) fclean
+	rm -rf $(LIBMLX)
 	rm -rf $(NAME)
 	rm -rf build
 

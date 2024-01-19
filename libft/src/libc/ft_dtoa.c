@@ -6,7 +6,7 @@
 /*   By: mmosk <mmosk@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/01/15 12:27:06 by mmosk         #+#    #+#                 */
-/*   Updated: 2024/01/16 22:11:44 by mmosk         ########   odam.nl         */
+/*   Updated: 2024/01/19 14:49:43 by mmosk         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ char	*ft_dtoa(double in, char *out, int length)
 			out[length + past_point] = '.';
 			past_point = 0;
 		}
-		out[length + past_point] =
-			'0' + (unsigned int)(in * pow(10, length - digits)) % 10;
+		out[length + past_point] = '0'
+			+ (unsigned int)(in * pow(10, length - digits)) % 10;
 	}
 	return (out);
 }

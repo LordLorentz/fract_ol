@@ -6,7 +6,7 @@
 /*   By: mmosk <mmosk@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/11/29 13:25:10 by mmosk         #+#    #+#                 */
-/*   Updated: 2024/01/18 13:34:19 by mmosk         ########   odam.nl         */
+/*   Updated: 2024/01/19 15:50:08 by mmosk         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@
 #  define HEIGHT WIDTH
 # endif
 
-# define JUST 2.0 / WIDTH
+# define JUST 0.0078125
 
 # ifndef DEPTH
 #  define DEPTH 32
@@ -43,21 +43,16 @@
 
 # define CHAR_2PI 40.5845104884
 
-typedef struct s_complex {
+typedef struct s_complex
+{
 	double	real;
 	double	imgn;
 }	t_complex;
 
-typedef struct s_rect {
-	int	x;
-	int	y;
-	int	width;
-	int	height;
-}	t_rect;
+typedef				unsigned int (t_occ)(t_complex, unsigned long, long);
 
-typedef				uint32_t (t_occ)(t_complex, unsigned long, long);
-
-typedef struct s_cam {
+typedef struct s_cam
+{
 	t_occ	*occlusion;
 	double	zoom;
 	int		x_offset;
@@ -68,17 +63,18 @@ typedef struct s_cam {
 
 typedef mlx_image_t	t_img;
 
-typedef struct s_fractal {
+typedef struct s_fractal
+{
 	t_complex	c;
 	uint32_t	(*get_color)(t_complex, t_occ *, struct s_fractal);
 	double		symmetry;
 	long		depth;
 }	t_fractal;
 
-typedef				uint32_t (t_gc)(t_complex, t_occ *, t_fractal);
+typedef				unsigned int (t_gc)(t_complex, t_occ *, t_fractal);
 
-
-typedef struct s_screenstate {
+typedef struct s_screenstate
+{
 	mlx_t		*mlx;
 	mlx_image_t	*img;
 	t_cam		camera;
@@ -94,7 +90,7 @@ void				output_state(t_screenstate *state, char *filename);
 
 void				zoom_to_cursor(mlx_t *mlx, t_cam *cam, double direction);
 
-int 				check_other(t_screenstate *state, t_cam *camera);
+int					check_other(t_screenstate *state, t_cam *camera);
 int					check_qert(mlx_t *mlx, t_fractal *fractal);
 int					check_wasd(mlx_t *mlx, t_fractal *fractal);
 int					check_arrow_keys(mlx_t *mlx, t_cam *cam);
@@ -133,7 +129,7 @@ unsigned int		occ_curse(t_complex z, unsigned long i, long depth);
 ////////////					Hooks								////////////
 
 void				ft_scroll_hook(double dx, double dy, void *param);
-void				ft_resize_hook(int32_t width, int32_t height, void* param);
+void				ft_resize_hook(int32_t width, int32_t height, void *param);
 void				ft_key_hook(mlx_key_data_t keydata, void *param);
 void				ft_close_hook(void *param);
 void				ft_loop_hook(void *param);

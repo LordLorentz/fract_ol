@@ -6,7 +6,7 @@
 /*   By: mmosk <mmosk@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/10/20 17:39:04 by mmosk         #+#    #+#                 */
-/*   Updated: 2024/01/15 15:28:29 by mmosk         ########   odam.nl         */
+/*   Updated: 2024/01/19 15:42:31 by mmosk         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,17 +52,17 @@ char		*fill_num(int *size, t_numb numb, t_flags flags);
 char		*fill_null(int *size, const char *in, t_flags flags);
 
 void		justify_str(char *dst, void *in, t_decode *f, t_flags flags);
-t_decode	decode_str;
-t_decode	decode_dec;
-t_decode	decode_dbl;
-t_decode	decode_hexl;
-t_decode	decode_hexu;
+void		decode_str(char *target, void *source, size_t n);
+void		decode_dec(char *target, void *source, size_t n);
+void		decode_dbl(char *target, void *source, size_t n);
+void		decode_hexl(char *target, void *source, size_t n);
+void		decode_hexu(char *target, void *source, size_t n);
 
 //internal logic functions
 int			count_args(const char *format);
 int			find_flags(const char **format, t_flags *out, va_list args);
 int			get_next_arg(const char **format, char **out, va_list args);
-char		*select_converter(char type, int *size, t_flags flags, va_list args);
+char		*select_converter(char type, int *sz, t_flags flags, va_list args);
 int			ft_arr_cat(char **in, const char *last, int out_size, char **out);
 
 //printf functions for external use

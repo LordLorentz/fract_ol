@@ -6,7 +6,7 @@
 /*   By: mmosk <mmosk@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/11/29 13:26:06 by mmosk         #+#    #+#                 */
-/*   Updated: 2024/01/18 13:12:00 by mmosk         ########   odam.nl         */
+/*   Updated: 2024/01/19 15:43:09 by mmosk         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	print_params(void)
 	ft_printf("You can give any settings files or parameters as arguments.\n");
 }
 
-int		main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	t_screenstate	state;
 	mlx_t			*mlx;

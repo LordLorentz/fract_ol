@@ -6,16 +6,16 @@
 /*   By: mmosk <mmosk@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/01/09 15:32:18 by mmosk         #+#    #+#                 */
-/*   Updated: 2024/01/12 16:51:39 by mmosk         ########   odam.nl         */
+/*   Updated: 2024/01/19 15:45:20 by mmosk         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fract_ol.h"
 
-static inline t_complex	iterate_z_tmath(t_complex z, t_complex *c, double symmetry)
+static inline t_complex	iterate_z_tmath(t_complex z, t_complex *c, double sym)
 {
 	const double	radius = sqrt(pow(z.real, 2) + pow(z.imgn, 2));
-	const double	angle = atan(z.imgn / z.real) * symmetry;
+	const double	angle = atan(z.imgn / z.real) * sym;
 
 	z.real = radius * sin(angle) + c->real;
 	z.imgn = radius * cos(angle) + c->imgn;

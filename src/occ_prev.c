@@ -6,7 +6,7 @@
 /*   By: mmosk <mmosk@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/01/15 15:50:31 by mmosk         #+#    #+#                 */
-/*   Updated: 2024/01/17 13:30:20 by mmosk         ########   odam.nl         */
+/*   Updated: 2024/01/19 15:51:17 by mmosk         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 inline unsigned int	blend_sub(t_complex z, t_complex prev, double mag, int end)
 {
-	const unsigned int	r = (unsigned int) (255.0 * (z.real - prev.real));
-	const unsigned int	g = (unsigned int) (255.0 * (z.imgn - prev.imgn));
-	const unsigned int	b = (unsigned int) (255.0 * mag / 8.0);
+	const unsigned int	r = (unsigned int)(255.0 * (z.real - prev.real));
+	const unsigned int	g = (unsigned int)(255.0 * (z.imgn - prev.imgn));
+	const unsigned int	b = (unsigned int)(255.0 * mag / 8.0);
 	const unsigned int	color = r << 24 | g << 16 | b << 8 | 0xFF;
 
 	if (end)
@@ -74,7 +74,7 @@ unsigned int	occ_angle(t_complex z, unsigned long i, long depth)
 	return (0);
 }
 
-unsigned int		occ_curse(t_complex z, unsigned long i, long depth)
+unsigned int	occ_curse(t_complex z, unsigned long i, long depth)
 {
 	t_fractal	host;
 

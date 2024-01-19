@@ -6,11 +6,11 @@
 /*   By: mmosk <mmosk@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/12/19 15:01:35 by mmosk         #+#    #+#                 */
-/*   Updated: 2024/01/12 16:57:50 by mmosk         ########   odam.nl         */
+/*   Updated: 2024/01/19 15:45:55 by mmosk         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "fract_ol.h"
+#include "fract_ol.h"
 
 //Maintains fractal x and y values for target x and y values
 inline void	zoom(t_cam *cam, double factor, double target_x, double target_y)
