@@ -40,6 +40,7 @@
 # define ZOOM_CONST 0.98
 
 # define FASTSCROLL 5
+# define SLOWSCROLL 10
 
 # define CHAR_2PI 40.5845104884
 

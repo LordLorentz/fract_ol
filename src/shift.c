@@ -29,6 +29,8 @@ int	check_arrow_keys(mlx_t *mlx, t_cam *cam)
 		dy = -1;
 	dx = dx + (FASTSCROLL - 1) * dx * mlx_is_key_down(mlx, MLX_KEY_LEFT_SHIFT);
 	dy = dy + (FASTSCROLL - 1) * dy * mlx_is_key_down(mlx, MLX_KEY_LEFT_SHIFT);
+	dx = dx - (1.0 - 1.0 / SLOWSCROLL) * dx * mlx_is_key_down(mlx, MLX_KEY_LEFT_CONTROL);
+	dy = dy - (1.0 - 1.0 / SLOWSCROLL) * dy * mlx_is_key_down(mlx, MLX_KEY_LEFT_CONTROL);
 	if (dx == 0 && dy == 0)
 		return (0);
 	cam->x_offset += dx;
@@ -53,6 +55,8 @@ int	check_wasd(mlx_t *mlx, t_fractal *fractal)
 		dy = -0.001;
 	dx = dx + (FASTSCROLL - 1) * dx * mlx_is_key_down(mlx, MLX_KEY_LEFT_SHIFT);
 	dy = dy + (FASTSCROLL - 1) * dy * mlx_is_key_down(mlx, MLX_KEY_LEFT_SHIFT);
+	dx = dx - (1.0 - 1.0 / SLOWSCROLL) * dx * mlx_is_key_down(mlx, MLX_KEY_LEFT_CONTROL);
+	dy = dy - (1.0 - 1.0 / SLOWSCROLL) * dy * mlx_is_key_down(mlx, MLX_KEY_LEFT_CONTROL);
 	if (dx == 0 && dy == 0)
 		return (0);
 	fractal->c.real += dx;
@@ -77,6 +81,8 @@ int	check_qert(mlx_t *mlx, t_fractal *fractal)
 		dy = -1;
 	dx = dx + (FASTSCROLL - 1) * dx * mlx_is_key_down(mlx, MLX_KEY_LEFT_SHIFT);
 	dy = dy + (FASTSCROLL - 1) * dy * mlx_is_key_down(mlx, MLX_KEY_LEFT_SHIFT);
+	dx = dx - (1.0 - 1.0 / SLOWSCROLL) * dx * mlx_is_key_down(mlx, MLX_KEY_LEFT_CONTROL);
+	dy = dy - (1.0 - 1.0 / SLOWSCROLL) * dy * mlx_is_key_down(mlx, MLX_KEY_LEFT_CONTROL);
 	if (dx == 0 && dy == 0)
 		return (0);
 	fractal->symmetry += dx;
