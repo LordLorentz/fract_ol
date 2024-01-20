@@ -107,6 +107,9 @@ uint32_t			gc_b_2(t_complex z, t_occ *occlusion, t_fractal fractal);
 uint32_t			gc_j_3(t_complex z, t_occ *occlusion, t_fractal fractal);
 uint32_t			gc_b_3(t_complex z, t_occ *occlusion, t_fractal fractal);
 
+uint32_t			gc_j_g(t_complex z, t_occ *occlusion, t_fractal fractal);
+uint32_t			gc_b_g(t_complex z, t_occ *occlusion, t_fractal fractal);
+
 uint32_t			gc_j_n(t_complex z, t_occ *occlusion, t_fractal fractal);
 uint32_t			gc_b_n(t_complex z, t_occ *occlusion, t_fractal fractal);
 

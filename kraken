@@ -1,11 +1,11 @@
 fractal=julia_g
 c.real=-0.1089999999122
 c.imgn=00.246999999991
-symmetry=-0.6399999931217
-depth=18
+symmetry=-1.2999999939631
+depth=38
 occlusion=substraction
-zoom=01659.702395831
-x_offset=-196
-y_offset=-203
+zoom=01.353969447943
+x_offset=-190
+y_offset=-191
 width=356
 height=313

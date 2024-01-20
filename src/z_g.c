@@ -21,12 +21,12 @@ static inline t_complex	iterate_z_nmath(t_complex z, t_complex *c, double sym)
 	const double	folded_radius = pow(radius2, sym / 2.0);
 	const double	folded_angle = angle * sym;
 
-	z.real = folded_radius * sin(folded_angle) + c->real;
-	z.imgn = folded_radius * cos(folded_angle) + c->imgn;
+	z.real = folded_radius * cos(folded_angle) + c->real;
+	z.imgn = folded_radius * sin(folded_angle) + c->imgn;
 	return (z);
 }
 
-uint32_t	gc_j_n(t_complex z, t_occ *occlusion, t_fractal fractal)
+uint32_t	gc_j_g(t_complex z, t_occ *occlusion, t_fractal fractal)
 {
 	unsigned long	i;
 	unsigned int	color;
@@ -42,7 +42,7 @@ uint32_t	gc_j_n(t_complex z, t_occ *occlusion, t_fractal fractal)
 	return (color);
 }
 
-uint32_t	gc_b_n(t_complex z, t_occ *occlusion, t_fractal fractal)
+uint32_t	gc_b_g(t_complex z, t_occ *occlusion, t_fractal fractal)
 {
 	unsigned long	i;
 	unsigned int	color;

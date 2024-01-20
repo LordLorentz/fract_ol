@@ -22,6 +22,10 @@ t_gc	*read_fractal(char *line)
 		return (&gc_j_3);
 	if (ft_strncmp(line, "mbrot_3", 7) == 0)
 		return (&gc_b_3);
+	if (ft_strncmp(line, "julia_g", 7) == 0)
+		return (&gc_j_g);
+	if (ft_strncmp(line, "mbrot_g", 7) == 0)
+		return (&gc_b_g);
 	if (ft_strncmp(line, "julia_n", 7) == 0)
 		return (&gc_j_n);
 	if (ft_strncmp(line, "mbrot_n", 7) == 0)

@@ -22,6 +22,10 @@ char	*get_fractal(t_gc *f)
 		return ("julia_3");
 	if (f == &gc_b_3)
 		return ("mbrot_3");
+	if (f == &gc_j_g)
+		return ("julia_g");
+	if (f == &gc_b_g)
+		return ("mbrot_g");
 	if (f == &gc_j_n)
 		return ("julia_n");
 	if (f == &gc_b_n)
