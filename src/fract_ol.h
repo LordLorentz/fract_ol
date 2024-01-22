@@ -6,7 +6,7 @@
 /*   By: mmosk <mmosk@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/11/29 13:25:10 by mmosk         #+#    #+#                 */
-/*   Updated: 2024/01/19 15:50:08 by mmosk         ########   odam.nl         */
+/*   Updated: 2024/01/22 13:37:23 by mmosk         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@
 # define ZOOM_CONST 0.98
 
 # define FASTSCROLL 5
-# define SLOWSCROLL 10
+# define SLOWSCROLL 0.1
 
 # define CHAR_2PI 40.5845104884
 
