@@ -38,7 +38,7 @@ t_gc	*read_fractal(char *line)
 		return (&gc_j_x);
 	if (ft_strncmp(line, "mbrot_x", 7) == 0)
 		return (&gc_b_x);
-	return (ft_exit(1, __func__, __LINE__), 0);
+	return (ft_exit(1, __func__, __LINE__), NULL);
 }
 
 t_occ	*read_occlusion(char *line)
@@ -98,7 +98,7 @@ t_screenstate	read_args(char **in)
 	i = -1;
 	while (in[++i])
 	{
-		if (parse_line(tolower(ft_strcull(in[i], &ft_isspace)), &state) == 0)
+		if (parse_line(ft_tolower(ft_strcull(in[i], &ft_isspace)), &state) == 0)
 			continue ;
 		fd = open(ft_strcull(in[i], &ft_isspace), O_RDONLY);
 		if (fd < 2)
@@ -108,7 +108,7 @@ t_screenstate	read_args(char **in)
 			line = get_next_line(fd);
 			if (line == NULL)
 				break ;
-			if (parse_line(tolower(ft_strcull(line, &ft_isspace)), &state))
+			if (parse_line(ft_tolower(ft_strcull(line, &ft_isspace)), &state))
 				ft_exit(-3, __func__, __LINE__);
 			free(line);
 		}
