@@ -71,6 +71,7 @@ clean:
 
 fclean: clean
 	make -C $(LIBFT) fclean
+	rm -rf $(LIBMLX)
 	rm -rf $(NAME)
 	rm -rf build
 

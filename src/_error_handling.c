@@ -6,7 +6,7 @@
 /*   By: mmosk <mmosk@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/12/13 13:56:22 by mmosk         #+#    #+#                 */
-/*   Updated: 2024/01/23 14:30:23 by mmosk         ########   odam.nl         */
+/*   Updated: 2024/01/23 15:52:16 by mmosk         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 void	ft_exit(int state, const char *function, int line)
 {
-	ft_printf("\033[31mExiting with state %d in function %s at line %d\033[39m\n",
+	ft_printf("\033[31mExiting with state %d in func %s at line %d\033[39m\n",
 		state, function, line);
 	exit(state);
 }
 
-int		check_state(t_screenstate state)
+int	check_state(t_screenstate state)
 {
 	if (state.camera.width < 1 || state.camera.width > 3000)
 		return (ft_printf("\033[31mBad width! < 1 or > 3000\033[39m\n"), 1);
@@ -29,7 +29,6 @@ int		check_state(t_screenstate state)
 		ft_printf("\033[31mDepth > 1024! Timeout very likely.\033[39m\n");
 	if (state.fractal.depth < 1)
 		return (ft_printf("\033[31mBad depth! < 1\033[39m\n"), 1);
-	
 	return (0);
 }
 
