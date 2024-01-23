@@ -6,7 +6,7 @@
 /*   By: mmosk <mmosk@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/01/16 22:15:35 by mmosk         #+#    #+#                 */
-/*   Updated: 2024/01/22 13:46:19 by mmosk         ########   odam.nl         */
+/*   Updated: 2024/01/23 14:39:06 by mmosk         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ t_gc	*read_fractal(char *line)
 		return (&gc_j_x);
 	if (ft_strncmp(line, "mbrot_x", 7) == 0)
 		return (&gc_b_x);
-	return (ft_exit(1, __func__, __LINE__), NULL);
+	return (print_params(), ft_exit(5, __func__, __LINE__), NULL);
 }
 
 t_occ	*read_occlusion(char *line)
@@ -57,7 +57,8 @@ t_occ	*read_occlusion(char *line)
 		return (&occ_beam);
 	if (ft_strncmp(line, "recursive", 9) == 0)
 		return (&occ_curse);
-	ft_exit(1, __func__, __LINE__);
+	print_params();
+	ft_exit(5, __func__, __LINE__);
 	return (NULL);
 }
 
@@ -72,15 +73,15 @@ int	parse_line(char *line, t_screenstate *state)
 	if (ft_strncmp(line, "symmetry=", 9) == 0)
 		return (state->fractal.symmetry = ft_atod(line + 9), 0);
 	if (ft_strncmp(line, "depth=", 6) == 0)
-		return (state->fractal.depth = ft_atoi(line + 6), 0);
+		return (state->fractal.depth = ft_atol(line + 6), 0);
 	if (ft_strncmp(line, "occlusion=", 10) == 0)
 		return (state->camera.occlusion = read_occlusion(line + 10), 0);
 	if (ft_strncmp(line, "zoom=", 5) == 0)
 		return (state->camera.zoom = ft_atod(line + 5), 0);
 	if (ft_strncmp(line, "x_offset=", 9) == 0)
-		return (state->camera.x_offset = ft_atoi(line + 9), 0);
+		return (state->camera.x_offset = ft_atol(line + 9), 0);
 	if (ft_strncmp(line, "y_offset=", 9) == 0)
-		return (state->camera.y_offset = ft_atoi(line + 9), 0);
+		return (state->camera.y_offset = ft_atol(line + 9), 0);
 	if (ft_strncmp(line, "width=", 6) == 0)
 		return (state->camera.width = ft_atoi(line + 6), 0);
 	if (ft_strncmp(line, "height=", 7) == 0)
@@ -98,17 +99,17 @@ t_screenstate	read_args(char **in)
 	i = -1;
 	while (in[++i])
 	{
-		if (parse_line(ft_tolower(ft_strcull(in[i], &ft_isspace)), &state) == 0)
+		if (parse_line(ft_strlower(ft_strcull(in[i], ft_isspace)), &state) == 0)
 			continue ;
 		fd = open(ft_strcull(in[i], &ft_isspace), O_RDONLY);
 		if (fd < 2)
-			ft_exit(fd, __func__, __LINE__);
+			print_params();
 		while (true)
 		{
 			line = get_next_line(fd);
 			if (line == NULL)
 				break ;
-			if (parse_line(ft_tolower(ft_strcull(line, &ft_isspace)), &state))
+			if (parse_line(ft_strlower(ft_strcull(line, &ft_isspace)), &state))
 				ft_exit(-3, __func__, __LINE__);
 			free(line);
 		}

@@ -1,20 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   error_handling.c                                   :+:    :+:            */
+/*   ft_strlower.c                                      :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: mmosk <mmosk@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2023/12/13 13:56:22 by mmosk         #+#    #+#                 */
-/*   Updated: 2024/01/17 14:33:10 by mmosk         ########   odam.nl         */
+/*   Created: 2024/01/22 20:56:55 by mmosk         #+#    #+#                 */
+/*   Updated: 2024/01/22 20:59:14 by mmosk         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fract_ol.h"
+#include "libft.h"
 
-void	ft_exit(int state, const char *function, int line)
+char	*ft_strlower(char *str)
 {
-	ft_printf("Exiting with state %d in function %s at line %d\n",
-		state, function, line);
-	exit(state);
+	unsigned int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		str[i] = ft_tolower(str[i]);
+		i++;
+	}
+	return (str);
 }

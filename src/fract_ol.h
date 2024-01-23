@@ -6,7 +6,7 @@
 /*   By: mmosk <mmosk@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/11/29 13:25:10 by mmosk         #+#    #+#                 */
-/*   Updated: 2024/01/22 13:37:23 by mmosk         ########   odam.nl         */
+/*   Updated: 2024/01/23 13:54:01 by mmosk         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,8 @@ typedef struct s_cam
 {
 	t_occ	*occlusion;
 	double	zoom;
-	int		x_offset;
-	int		y_offset;
+	long	x_offset;
+	long	y_offset;
 	int		width;
 	int		height;
 }	t_cam;
@@ -85,6 +85,9 @@ typedef struct s_screenstate
 ////////////					I/O									////////////
 
 t_screenstate		read_args(char **in);
+void				print_params(void);
+void				print_params_2(void);
+int					check_state(t_screenstate state);
 void				output_state(t_screenstate *state, char *filename);
 
 ////////////					Controls							////////////

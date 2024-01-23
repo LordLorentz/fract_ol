@@ -17,10 +17,10 @@ LIBS	+= $(LIBFT)/build/libft.a
 INCLUDE_DIRS = -I $(LIBFT)/include -I $(LIBMLX)/include
 
 FILES := \
+	_error_handling.c \
 	_output_state.c \
 	_read_input.c \
 	draw_image.c \
-	error_handling.c \
 	main.c \
 	occ_iter.c \
 	occ_prev.c \
@@ -28,6 +28,7 @@ FILES := \
 	shift.c \
 	z_2.c \
 	z_3.c \
+	z_g.c \
 	z_n.c \
 	z_t.c \
 	z_x.c \

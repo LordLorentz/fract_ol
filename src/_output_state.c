@@ -6,7 +6,7 @@
 /*   By: mmosk <mmosk@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/01/11 13:22:40 by mmosk         #+#    #+#                 */
-/*   Updated: 2024/01/19 15:52:05 by mmosk         ########   odam.nl         */
+/*   Updated: 2024/01/23 13:58:08 by mmosk         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,11 +70,11 @@ void	output_state(t_screenstate *state, char *filename)
 	if (fd < 2)
 		ft_exit(fd, __func__, __LINE__);
 	ft_fprintf(fd,
-		"fractal=%s\nc.real=%f\nc.imgn=%f\nsymmetry=%f\ndepth=%d\n",
+		"fractal=%s\nc.real=%f\nc.imgn=%f\nsymmetry=%f\ndepth=%l\n",
 		get_fractal(fractal.get_color), fractal.c.real, fractal.c.imgn,
-		fractal.symmetry, (int)fractal.depth);
+		fractal.symmetry, fractal.depth);
 	ft_fprintf(fd,
-		"occlusion=%s\nzoom=%f\nx_offset=%d\ny_offset=%d\n",
+		"occlusion=%s\nzoom=%f\nx_offset=%l\ny_offset=%l\n",
 		get_occlusion(cam.occlusion), cam.zoom, cam.x_offset, cam.y_offset);
 	ft_fprintf(fd,
 		"width=%d\nheight=%d\n",

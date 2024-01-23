@@ -6,7 +6,7 @@
 /*   By: mmosk <mmosk@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/10/02 15:55:18 by mmosk         #+#    #+#                 */
-/*   Updated: 2024/01/19 15:36:52 by mmosk         ########   odam.nl         */
+/*   Updated: 2024/01/23 14:12:57 by mmosk         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ long	ft_labs(long in);
 
 int		ft_toupper(int c);
 int		ft_tolower(int c);
+
+char	*ft_strlower(char *str);
 
 int		ft_isalnum(int c);
 int		ft_isalpha(int c);
@@ -65,6 +67,7 @@ char	*ft_strrchr(const char *s, int c);
 char	*ft_strnstr(const char *big, const char *little, size_t len);
 
 int		ft_atoi(const char *nptr);
+long	ft_atol(const char *nptr);
 char	*ft_itoa(int n);
 int		ft_long_digits(long in, long base_size);
 int		ft_sz_digits(size_t in, size_t base_size);

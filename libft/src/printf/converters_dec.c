@@ -6,7 +6,7 @@
 /*   By: mmosk <mmosk@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/10/23 14:40:26 by mmosk         #+#    #+#                 */
-/*   Updated: 2024/01/15 15:30:42 by mmosk         ########   odam.nl         */
+/*   Updated: 2024/01/23 13:56:14 by mmosk         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,32 @@ char	*c_int(int *size, t_flags flags, va_list args)
 	numb.base = &decode_dec;
 	numb.base_sz = 10;
 	in = (long)va_arg(args, int);
+	numb.sign = "";
+	if (in < 0)
+	{
+		numb.sign = "-";
+		in = -in;
+	}
+	num = (size_t)in;
+	numb.num = &num;
+	if ((flags.flags & SPACE_NOSIGN) && *numb.sign != '-')
+		numb.sign = " ";
+	if ((flags.flags & FORCE_SIGN) && *numb.sign != '-')
+		numb.sign = "+";
+	out = fill_num(size, numb, flags);
+	return (out);
+}
+
+char	*c_long(int *size, t_flags flags, va_list args)
+{
+	long	in;
+	char	*out;
+	t_numb	numb;
+	size_t	num;
+
+	numb.base = &decode_dec;
+	numb.base_sz = 10;
+	in = (long)va_arg(args, long);
 	numb.sign = "";
 	if (in < 0)
 	{
