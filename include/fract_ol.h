@@ -6,7 +6,7 @@
 /*   By: mmosk <mmosk@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/11/29 13:25:10 by mmosk         #+#    #+#                 */
-/*   Updated: 2024/01/23 13:54:01 by mmosk         ########   odam.nl         */
+/*   Updated: 2024/09/30 21:06:19 by mmosk         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 # include <unistd.h>
 # include <math.h>
 # include <fcntl.h>
+# include <readline/readline.h>
+# include <pthread.h>
 # include "MLX42/MLX42.h"
 # include "libft.h"
 # include "ft_printf.h"
@@ -43,6 +45,11 @@
 # define SLOWSCROLL 0.1
 
 # define CHAR_2PI 40.5845104884
+
+# define THREAD_MAX 1
+
+typedef 			void *(*t_sr)(void *);
+typedef 			void (*t_loop)(void *);
 
 typedef struct s_complex
 {
@@ -74,13 +81,26 @@ typedef struct s_fractal
 
 typedef				unsigned int (t_gc)(t_complex, t_occ *, t_fractal);
 
+struct s_screenstate;
+
+typedef struct s_threadstate
+{
+	pthread_t				thread;
+	int						bias;
+	struct s_screenstate	*screen;
+}	t_threadstate;
+
 typedef struct s_screenstate
 {
-	mlx_t		*mlx;
-	mlx_image_t	*img;
-	t_cam		camera;
-	t_fractal	fractal;
+	mlx_t			*mlx;
+	mlx_image_t		*img;
+	t_cam			camera;
+	t_fractal		fractal;
+	t_threadstate	threadstate[THREAD_MAX];
+	bool			continue_drawing;
 }	t_screenstate;
+
+
 
 ////////////					I/O									////////////
 
@@ -101,7 +121,14 @@ int					check_arrow_keys(mlx_t *mlx, t_cam *cam);
 
 ////////////					Rendering							////////////
 
-void				draw_fract(t_img *img, t_cam cam, t_fractal fractal);
+void				blank_image(t_img *img);
+
+void				initialize_threadstate(t_screenstate *screen);
+void				create_draw_threads(t_screenstate *screen);
+void				join_draw_threads(t_screenstate *screen);
+void				draw_cycle(t_screenstate *screen);
+
+void				*draw_fract(t_threadstate *state);
 
 ////////////					Fractals							////////////
 
@@ -135,11 +162,13 @@ unsigned int		occ_curse(t_complex z, unsigned long i, long depth);
 
 ////////////					Hooks								////////////
 
-void				ft_scroll_hook(double dx, double dy, void *param);
-void				ft_resize_hook(int32_t width, int32_t height, void *param);
-void				ft_key_hook(mlx_key_data_t keydata, void *param);
-void				ft_close_hook(void *param);
-void				ft_loop_hook(void *param);
+void				ft_scroll_hook(double dx, double dy, t_screenstate *state);
+void				ft_resize_hook(int32_t w, int32_t h, t_screenstate *state);
+void				ft_key_hook(mlx_key_data_t keydata, t_screenstate *state);
+void				ft_close_hook(t_screenstate *state);
+void				ft_loop_hook(t_screenstate *state);
+
+void				output_nonblocking(t_screenstate *state);
 
 ////////////					Error handling						////////////
 

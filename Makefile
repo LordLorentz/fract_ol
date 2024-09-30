@@ -7,24 +7,24 @@ ARCHIVE = ar -rcs
 LIBMLX	= ./MLX42
 LIBFT	= ./libft
 
-LINKERS	= -ldl -lglfw -pthread -lm
+LINKERS	= -ldl -lglfw -pthread -lm -lreadline
 # GLFW_FLAGS	= `pkg-config --cflags glfw3 gl`
 # GLFW_LIBS	= `pkg-config --libs glfw3 gl`
 
 LIBS	= $(LIBMLX)/build/libmlx42.a
 LIBS	+= $(LIBFT)/build/libft.a
 
-INCLUDE_DIRS = -I $(LIBFT)/include -I $(LIBMLX)/include
+INCLUDE_DIRS = -I $(LIBFT)/include -I $(LIBMLX)/include -I include
 
 FILES := \
 	_error_handling.c \
 	_output_state.c \
 	_read_input.c \
 	draw_image.c \
+	draw_threads.c \
 	main.c \
 	occ_iter.c \
 	occ_prev.c \
-	hooks.c \
 	shift.c \
 	z_2.c \
 	z_3.c \
@@ -32,7 +32,9 @@ FILES := \
 	z_n.c \
 	z_t.c \
 	z_x.c \
-	zoom.c
+	zoom.c \
+	hooks/hooks.c \
+	hooks/output_nonblocking.c
 
 OBJECTS := $(FILES:.c=.o)
 
@@ -60,6 +62,7 @@ fsanitize: build $(OBJECTS)
 
 build:
 	mkdir build
+	mkdir build/hooks
 
 build/%.o: src/%.c
 	$(CC) -c $(INCLUDE_DIRS) $(CFLAGS) $(CPPFLAGS) $< -o $@
