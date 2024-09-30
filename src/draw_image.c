@@ -6,7 +6,7 @@
 /*   By: mmosk <mmosk@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/12/13 19:26:19 by mmosk         #+#    #+#                 */
-/*   Updated: 2024/09/30 21:10:35 by mmosk         ########   odam.nl         */
+/*   Updated: 2024/09/30 21:16:58 by mmosk         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,8 @@ void	*draw_fract(t_threadstate *state)
 		position.real = (double)(i % img->width + cam.x_offset) * cam.zoom * JUST;
 		position.imgn = (double)(i / img->width + cam.y_offset) * cam.zoom * JUST;
 		color = fractal.get_color(position, cam.occlusion, fractal);
-		((unsigned int *)img->pixels)[i] = color;
+		mlx_put_pixel(img, i % img->width, i / img->width, color);
+		// ((unsigned int *)img->pixels)[i] = color;
 		i += THREAD_MAX;
 	}
 	return (NULL);

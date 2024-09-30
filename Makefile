@@ -16,6 +16,8 @@ LIBS	+= $(LIBFT)/build/libft.a
 
 INCLUDE_DIRS = -I $(LIBFT)/include -I $(LIBMLX)/include -I include
 
+HEADER = include/fract_ol.h
+
 FILES := \
 	_error_handling.c \
 	_output_state.c \
@@ -64,7 +66,7 @@ build:
 	mkdir build
 	mkdir build/hooks
 
-build/%.o: src/%.c
+build/%.o: src/%.c $(HEADER)
 	$(CC) -c $(INCLUDE_DIRS) $(CFLAGS) $(CPPFLAGS) $< -o $@
 
 clean:
