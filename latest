@@ -1,4 +1,5 @@
 fractal=julia_g
+<<<<<<< HEAD
 c.real=00.211000000083
 c.imgn=-0.2900000000650
 symmetry=01.510000006490
@@ -9,3 +10,15 @@ x_offset=27
 y_offset=-8
 width=356
 height=313
+=======
+c.real=-0.7279999997306
+c.imgn=-0.4450000008668
+symmetry=-0.5399999935906
+depth=5
+occlusion=angle
+zoom=01.084165784021
+x_offset=-239
+y_offset=-252
+width=514
+height=507
+>>>>>>> 701c92b (Repairing)
