@@ -12,7 +12,7 @@
 
 #include "fract_ol.h"
 
-inline unsigned int	blend_sub(t_complex z, t_complex prev, double mag, int end)
+inline unsigned int	blend_sub(t_threadstate thread *, t_complex z, t_complex prev, double mag, int end)
 {
 	const unsigned int	r = (unsigned int)(255.0 * (z.real - prev.real));
 	const unsigned int	g = (unsigned int)(255.0 * (z.imgn - prev.imgn));
@@ -24,25 +24,25 @@ inline unsigned int	blend_sub(t_complex z, t_complex prev, double mag, int end)
 	return (color);
 }
 
-unsigned int	occ_sub(t_complex z, unsigned long i, long depth)
+unsigned int	occ_sub(t_threadstate thread *, t_complex z, unsigned long i, long depth)
 {
-	static t_complex	prev;
+	static t_complex	prev[4];
 	const double		magnitude = z.real * z.real + z.imgn * z.imgn;
 
 	if (i == 0)
 	{
-		prev.imgn = 0;
-		prev.real = 0;
+		prev[thread->identity].imgn = 0;
+		prev[thread->identity].real = 0;
 	}
 	if (i > (unsigned long) depth)
-		return (blend_sub(z, prev, magnitude, 1));
+		return (blend_sub(z, prev[thread->identity], magnitude, 1));
 	if (magnitude > 4)
-		return (blend_sub(z, prev, magnitude, 0));
-	prev = z;
+		return (blend_sub(z, prev[thread->identity], magnitude, 0));
+	prev[thread->identity] = z;
 	return (0);
 }
 
-inline unsigned int	blend_angle(t_complex z, t_complex prev, int end)
+inline unsigned int	blend_angle(t_threadstate thread *, t_complex z, t_complex prev, int end)
 {
 	const double		radius = pow(z.real - prev.real, 2)
 		+ pow(z.imgn - prev.imgn, 2);
@@ -57,25 +57,26 @@ inline unsigned int	blend_angle(t_complex z, t_complex prev, int end)
 	return (color);
 }
 
-unsigned int	occ_angle(t_complex z, unsigned long i, long depth)
+unsigned int	occ_angle(t_threadstate thread *, t_complex z, unsigned long i, long depth)
 {
-	static t_complex	prev;
+	static t_complex	prev[4];
 
 	if (i == 0)
 	{
-		prev.imgn = 0;
-		prev.real = 0;
+		prev[thread->identity].imgn = 0;
+		prev[thread->identity].real = 0;
 	}
 	if (i > (unsigned long) depth)
-		return (blend_angle(z, prev, 1));
+		return (blend_angle(z, prev[thread->identity], 1));
 	if (z.real * z.real + z.imgn * z.imgn > 4)
-		return (blend_angle(z, prev, 0));
-	prev = z;
+		return (blend_angle(z, prev[thread->identity], 0));
+	prev[thread->identity] = z;
 	return (0);
 }
 
-unsigned int	occ_curse(t_complex z, unsigned long i, long depth)
+unsigned int	occ_curse(t_threadstate thread *, t_complex z, unsigned long i, long depth)
 {
+	(void)thread;
 	t_fractal	host;
 
 	host.depth = depth / 4;

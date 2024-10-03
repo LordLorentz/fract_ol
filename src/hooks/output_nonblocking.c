@@ -30,8 +30,8 @@ void	*read_routine(t_screenstate *state)
 
 void	output_nonblocking(t_screenstate *state)
 {
-	pthread_t	thread;
+	pthread_t	thread *;
 
-	pthread_create(&thread, NULL, (t_sr)&read_routine, state);
-	pthread_detach(thread);
+	pthread_create(&thread *, NULL, (t_sr)&read_routine, state);
+	pthread_detach(thread *);
 }

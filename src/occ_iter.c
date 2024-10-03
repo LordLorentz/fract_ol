@@ -12,8 +12,10 @@
 
 #include "fract_ol.h"
 
-unsigned int	occ_cutoff(t_complex z, unsigned long i, long depth)
+unsigned int	occ_cutoff(t_threadstate thread *, t_complex z, unsigned long i, long depth)
 {
+	(void)thread;
+
 	if (i > (unsigned long) depth)
 		return (0x000000FF);
 	if (z.real * z.real + z.imgn * z.imgn > 4)
@@ -33,8 +35,9 @@ inline unsigned int	blend_depth(long i, double magnitude, int end)
 	return (color);
 }
 
-unsigned int	occ_depth(t_complex z, unsigned long i, long depth)
+unsigned int	occ_depth(t_threadstate thread *, t_complex z, unsigned long i, long depth)
 {
+	(void)thread;
 	const double	magnitude = z.real * z.real + z.imgn * z.imgn;
 
 	if (i > (unsigned long) depth)
@@ -44,8 +47,9 @@ unsigned int	occ_depth(t_complex z, unsigned long i, long depth)
 	return (0);
 }
 
-unsigned int	occ_plane(t_complex z, unsigned long i, long depth)
+unsigned int	occ_plane(t_threadstate thread *, t_complex z, unsigned long i, long depth)
 {
+	(void)thread;
 	const double	magnitude = z.real * z.real + z.imgn * z.imgn;
 
 	if (i > (unsigned long) depth)
@@ -55,8 +59,9 @@ unsigned int	occ_plane(t_complex z, unsigned long i, long depth)
 	return (0);
 }
 
-unsigned int	occ_beam(t_complex z, unsigned long i, long depth)
+unsigned int	occ_beam(t_threadstate thread *, t_complex z, unsigned long i, long depth)
 {
+	(void)thread;
 	const double	magnitude = z.real * z.real + z.imgn * z.imgn;
 
 	if (i > (unsigned long) depth)

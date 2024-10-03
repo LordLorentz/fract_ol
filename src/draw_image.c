@@ -38,13 +38,13 @@ void	*draw_fract(t_threadstate *state)
 	img = state->screen->img;
 	cam = state->screen->camera;
 	fractal = state->screen->fractal;
-	i = state->bias;
+	i = state->identity;
 	while ((unsigned int)i < img->height * img->width
 		&& state->screen->continue_drawing == true)
 	{
 		position.real = (double)(i % img->width + cam.x_offset) * cam.zoom * JUST;
 		position.imgn = (double)(i / img->width + cam.y_offset) * cam.zoom * JUST;
-		color = fractal.get_color(position, cam.occlusion, fractal);
+		color = fractal.get_color(state, position, cam.occlusion, fractal);
 		mlx_put_pixel(img, i % img->width, i / img->width, color);
 		// ((unsigned int *)img->pixels)[i] = color;
 		i += THREAD_MAX;

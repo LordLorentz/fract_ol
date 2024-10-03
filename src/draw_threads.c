@@ -19,7 +19,7 @@ void	initialize_threadstate(t_screenstate *screen)
 	i = 0;
 	while (i < THREAD_MAX)
 	{
-		screen->threadstate[i].bias = i;
+		screen->threadstate[i].identity = i;
 		screen->threadstate[i].screen = screen;
 		i++;
 	}
@@ -36,7 +36,7 @@ void	create_draw_threads(t_screenstate *screen)
 	while (i < THREAD_MAX)
 	{
 		current = &screen->threadstate[i];
-		pthread_create(&current->thread, NULL, (t_sr)draw_fract, current);
+		pthread_create(&current->thread *, NULL, (t_sr)draw_fract, current);
 		i++;
 	}
 }
@@ -51,7 +51,7 @@ void	join_draw_threads(t_screenstate *screen)
 	while (i < THREAD_MAX)
 	{
 		current = &screen->threadstate[i];
-		pthread_join(current->thread, NULL);
+		pthread_join(current->thread *, NULL);
 		i++;
 	}
 }
