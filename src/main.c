@@ -14,6 +14,7 @@
 
 int	main(int argc, char **argv)
 {
+	(void)argc;
 	t_screenstate	state;
 
 	ft_strlcpy(argv[0], "standard", 9);
@@ -35,5 +36,5 @@ int	main(int argc, char **argv)
 	mlx_loop_hook(state.mlx, (t_loop)&ft_loop_hook, &state);
 	mlx_loop(state.mlx);
 	mlx_terminate(state.mlx);
-	return ((void)argc, EXIT_SUCCESS);
+	exit(EXIT_SUCCESS);
 }

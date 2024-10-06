@@ -57,7 +57,7 @@ $(LIBFT):
 	make -C $(LIBFT) all
 
 $(NAME): build $(OBJECTS) $(LIBS)
-	$(CC) $(CFLAGS) $(OBJECTS) $(LINKERS) $(LIBS) -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJECTS) $(LIBS) $(LINKERS) -o $(NAME)
 
 fsanitize: build $(OBJECTS)
 	$(CC) -fsanitize=address -g $(CFLAGS) $(OBJECTS) $(LINKERS) $(LIBS) -o $(NAME)

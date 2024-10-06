@@ -22,7 +22,7 @@ static inline t_complex	iterate_z_tmath(t_complex z, t_complex *c, double sym)
 	return (z);
 }
 
-uint32_t	gc_j_t(t_threadstate thread *, t_complex z, t_occ *occlusion, t_fractal fractal)
+uint32_t	gc_j_t(t_threadstate *thread, t_complex z, t_occ *occlusion, t_fractal fractal)
 {
 	unsigned long	i;
 	unsigned int	color;
@@ -32,13 +32,13 @@ uint32_t	gc_j_t(t_threadstate thread *, t_complex z, t_occ *occlusion, t_fractal
 	while (color == 0)
 	{
 		z = iterate_z_tmath(z, &fractal.c, fractal.symmetry);
-		color = occlusion(thread *, z, i, fractal.depth);
+		color = occlusion(thread, z, i, fractal.depth);
 		i++;
 	}
 	return (color);
 }
 
-uint32_t	gc_b_t(t_threadstate thread *, t_complex z, t_occ *occlusion, t_fractal fractal)
+uint32_t	gc_b_t(t_threadstate *thread, t_complex z, t_occ *occlusion, t_fractal fractal)
 {
 	unsigned long	i;
 	unsigned int	color;
@@ -49,7 +49,7 @@ uint32_t	gc_b_t(t_threadstate thread *, t_complex z, t_occ *occlusion, t_fractal
 	while (color == 0)
 	{
 		z = iterate_z_tmath(z, &fractal.c, fractal.symmetry);
-		color = occlusion(thread *, z, i, fractal.depth);
+		color = occlusion(thread, z, i, fractal.depth);
 		i++;
 	}
 	return (color);

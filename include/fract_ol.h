@@ -58,6 +58,7 @@ typedef struct s_complex
 }	t_complex;
 
 struct s_threadstate;
+struct s_fractal;
 
 typedef	unsigned int (t_occ)(struct s_threadstate *, t_complex, unsigned long, long);
 
@@ -76,14 +77,13 @@ typedef mlx_image_t	t_img;
 typedef struct s_fractal
 {
 	t_complex	c;
-	uint32_t	(*get_color)(t_complex, t_occ *, struct s_fractal);
+	uint32_t	(*get_color)(struct s_threadstate *, t_complex, t_occ *, struct s_fractal);
 	double		symmetry;
 	long		depth;
 }	t_fractal;
 
-typedef				unsigned int (t_gc)(t_complex, t_occ *, t_fractal);
+typedef	unsigned int (t_gc)(struct s_threadstate *, t_complex, t_occ *, t_fractal);
 
-struct s_screenstate;
 
 typedef struct s_threadstate
 {
@@ -134,33 +134,33 @@ void				*draw_fract(t_threadstate *state);
 
 ////////////					Fractals							////////////
 
-uint32_t			gc_j_2(t_threadstate thread *, t_complex z, t_occ *occlusion, t_fractal fractal);
-uint32_t			gc_b_2(t_threadstate thread *, t_complex z, t_occ *occlusion, t_fractal fractal);
+uint32_t			gc_j_2(t_threadstate *thread, t_complex z, t_occ *occlusion, t_fractal fractal);
+uint32_t			gc_b_2(t_threadstate *thread, t_complex z, t_occ *occlusion, t_fractal fractal);
 
-uint32_t			gc_j_3(t_threadstate thread *, t_complex z, t_occ *occlusion, t_fractal fractal);
-uint32_t			gc_b_3(t_threadstate thread *, t_complex z, t_occ *occlusion, t_fractal fractal);
+uint32_t			gc_j_3(t_threadstate *thread, t_complex z, t_occ *occlusion, t_fractal fractal);
+uint32_t			gc_b_3(t_threadstate *thread, t_complex z, t_occ *occlusion, t_fractal fractal);
 
-uint32_t			gc_j_g(t_threadstate thread *, t_complex z, t_occ *occlusion, t_fractal fractal);
-uint32_t			gc_b_g(t_threadstate thread *, t_complex z, t_occ *occlusion, t_fractal fractal);
+uint32_t			gc_j_g(t_threadstate *thread, t_complex z, t_occ *occlusion, t_fractal fractal);
+uint32_t			gc_b_g(t_threadstate *thread, t_complex z, t_occ *occlusion, t_fractal fractal);
 
-uint32_t			gc_j_n(t_threadstate thread *, t_complex z, t_occ *occlusion, t_fractal fractal);
-uint32_t			gc_b_n(t_threadstate thread *, t_complex z, t_occ *occlusion, t_fractal fractal);
+uint32_t			gc_j_n(t_threadstate *thread, t_complex z, t_occ *occlusion, t_fractal fractal);
+uint32_t			gc_b_n(t_threadstate *thread, t_complex z, t_occ *occlusion, t_fractal fractal);
 
-uint32_t			gc_j_t(t_threadstate thread *, t_complex z, t_occ *occlusion, t_fractal fractal);
-uint32_t			gc_b_t(t_threadstate thread *, t_complex z, t_occ *occlusion, t_fractal fractal);
+uint32_t			gc_j_t(t_threadstate *thread, t_complex z, t_occ *occlusion, t_fractal fractal);
+uint32_t			gc_b_t(t_threadstate *thread, t_complex z, t_occ *occlusion, t_fractal fractal);
 
-uint32_t			gc_j_x(t_threadstate thread *, t_complex z, t_occ *occlusion, t_fractal fractal);
-uint32_t			gc_b_x(t_threadstate thread *, t_complex z, t_occ *occlusion, t_fractal fractal);
+uint32_t			gc_j_x(t_threadstate *thread, t_complex z, t_occ *occlusion, t_fractal fractal);
+uint32_t			gc_b_x(t_threadstate *thread, t_complex z, t_occ *occlusion, t_fractal fractal);
 
 ////////////					Occlusion modes						////////////
 
-unsigned int		occ_cutoff(t_threadstate thread *, t_complex z, unsigned long i, long depth);
-unsigned int		occ_sub(t_threadstate thread *, t_complex z, unsigned long i, long depth);
-unsigned int		occ_angle(t_threadstate thread *, t_complex z, unsigned long i, long depth);
-unsigned int		occ_depth(t_threadstate thread *, t_complex z, unsigned long i, long depth);
-unsigned int		occ_plane(t_threadstate thread *, t_complex z, unsigned long i, long depth);
-unsigned int		occ_beam(t_threadstate thread *, t_complex z, unsigned long i, long depth);
-unsigned int		occ_curse(t_threadstate thread *, t_complex z, unsigned long i, long depth);
+unsigned int		occ_cutoff(t_threadstate *thread, t_complex z, unsigned long i, long depth);
+unsigned int		occ_sub(t_threadstate *thread, t_complex z, unsigned long i, long depth);
+unsigned int		occ_angle(t_threadstate *thread, t_complex z, unsigned long i, long depth);
+unsigned int		occ_depth(t_threadstate *thread, t_complex z, unsigned long i, long depth);
+unsigned int		occ_plane(t_threadstate *thread, t_complex z, unsigned long i, long depth);
+unsigned int		occ_beam(t_threadstate *thread, t_complex z, unsigned long i, long depth);
+unsigned int		occ_curse(t_threadstate *thread, t_complex z, unsigned long i, long depth);
 
 ////////////					Hooks								////////////
 
