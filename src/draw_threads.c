@@ -25,28 +25,21 @@ void	initialize_threadstate(t_screenstate *screen)
 	}
 }
 
-void	create_draw_threads(t_screenstate *screen)
+void	*middlewoman(t_screenstate *screen)
 {
 	int				i;
 	t_threadstate	*current;
 
 	blank_image(screen->img);
-	screen->continue_drawing = true;
+	screen->finished_drawing = false;
 	i = 0;
 	while (i < THREAD_MAX)
 	{
 		current = &screen->threadstate[i];
-		pthread_create(&current->thread, NULL, (t_sr)draw_fract, current);
+		if (pthread_create(&current->thread, NULL, (t_sr)draw_fract, current))
+			exit(1);
 		i++;
 	}
-}
-
-void	join_draw_threads(t_screenstate *screen)
-{
-	int				i;
-	t_threadstate	*current;
-
-	screen->continue_drawing = false;
 	i = 0;
 	while (i < THREAD_MAX)
 	{
@@ -54,6 +47,20 @@ void	join_draw_threads(t_screenstate *screen)
 		pthread_join(current->thread, NULL);
 		i++;
 	}
+	screen->finished_drawing = true;
+	return (NULL);
+}
+
+void	create_draw_threads(t_screenstate *screen)
+{
+	if (pthread_create(&screen->middlewoman, NULL, (t_sr)middlewoman, screen))
+		exit (1);
+}
+
+void	join_draw_threads(t_screenstate *screen)
+{
+	screen->finished_drawing = true;
+	pthread_join(screen->middlewoman, NULL);
 }
 
 void	draw_cycle(t_screenstate *screen)
@@ -61,3 +68,5 @@ void	draw_cycle(t_screenstate *screen)
 	join_draw_threads(screen);
 	create_draw_threads(screen);
 }
+
+

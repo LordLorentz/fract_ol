@@ -39,7 +39,7 @@ void	ft_loop_hook(t_screenstate *state)
 	draw += check_wasd(state->mlx, &state->fractal);
 	draw += check_qert(state->mlx, &state->fractal);
 	draw += check_other(state, &state->camera);
-	if (draw)
+	if (draw != 0 && state->finished_drawing == true)
 		draw_cycle(state);
 }
 

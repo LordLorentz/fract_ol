@@ -40,7 +40,7 @@ void	*draw_fract(t_threadstate *state)
 	fractal = state->screen->fractal;
 	i = state->identity;
 	while ((unsigned int)i < img->height * img->width
-		&& state->screen->continue_drawing == true)
+		&& state->screen->finished_drawing == false)
 	{
 		position.real = (double)(i % img->width + cam.x_offset) * cam.zoom * JUST;
 		position.imgn = (double)(i / img->width + cam.y_offset) * cam.zoom * JUST;

@@ -47,10 +47,9 @@ all: libmlx $(LIBFT) $(NAME)
 
 bonus: all
 
-$(LIBMLX):
-	git clone https://github.com/codam-coding-college/MLX42.git $(LIBMLX)
-
 libmlx: $(LIBMLX)
+	git submodule init
+	git submodule update
 	@cmake $(LIBMLX) -B $(LIBMLX)/build && make -C $(LIBMLX)/build -j4
 
 $(LIBFT):

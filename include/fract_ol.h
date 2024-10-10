@@ -99,7 +99,8 @@ typedef struct s_screenstate
 	t_cam			camera;
 	t_fractal		fractal;
 	t_threadstate	threadstate[THREAD_MAX];
-	bool			continue_drawing;
+	pthread_t		middlewoman;
+	bool			finished_drawing;
 }	t_screenstate;
 
 
