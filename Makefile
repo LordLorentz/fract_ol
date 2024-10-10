@@ -75,7 +75,7 @@ clean:
 
 fclean: clean
 	make -C $(LIBFT) fclean
-	rm -rf $(LIBMLX)
+	git submodule deinit --all
 	rm -rf $(NAME)
 	rm -rf build
 
